@@ -8,13 +8,13 @@ local function run(msg, matches)
   end
   local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)]['settings']['lock_arabic'] then
-    if data[tostring(msg.to.id)]['settings']['lock_arabic'] == 'yes' then
+    if data[tostring(msg.to.id)]['settings']['lock_arabic'] == 'فعال' then
       if antiarabic[msg.from.id] == true then 
         return
       end
-      send_large_msg("chat#id".. msg.to.id , "Arabic is not allowed here")
+      send_large_msg("chat#id".. msg.to.id , "عربی مجاز نیست در اینجا")
       local name = user_print_name(msg.from)
-      savelog(msg.to.id, name.." ["..msg.from.id.."] kicked (arabic was locked) ")
+      savelog(msg.to.id, name.." ["..msg.from.id.."] اخراج شد (عربی و فارسی قفل است.) ")
       chat_del_user('chat#id'..msg.to.id,'user#id'..msg.from.id,ok_cb,false)
 		  antiarabic[msg.from.id] = true
       return
